@@ -5,5 +5,11 @@
 <body>
 <%- include('includes/navbar', {links: links}) %>
 <h1><%= title %></h1>
+
+<ul>
+    <% products.map(item => {%>
+        <li><%= item.product + " " + item.type + " " + item.manufacturer%></li>
+    <%})%>
+</ul>
 </body>
 </html>
