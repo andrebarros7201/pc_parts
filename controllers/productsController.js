@@ -3,18 +3,23 @@ const db = require("../db/queries");
 const { links } = require("../views/includes/links");
 
 exports.productsGet = asyncHandler(async (req, res) => {
-  const products = await db.getProducts();
-  res.render("products", {
-    title: "Products",
-    links: links,
-    products: products,
-  });
-});
+  const { category } = req.query;
 
-exports.productByCategoryGet = asyncHandler(async (req, res) => {
-  const { category } = req.params;
-  const products = await db.getProductsByCategory(category);
-  res.render("products", { title: category, links: links, products: products });
+  if (!category) {
+    const products = await db.getProducts();
+    res.render("products", {
+      title: "Products",
+      links: links,
+      products: products,
+    });
+  } else {
+    const products = await db.getProductsByCategory(category);
+    res.render("products", {
+      title: category,
+      links: links,
+      products: products,
+    });
+  }
 });
 
 exports.createProductGet = asyncHandler(async (req, res) => {
