@@ -4,12 +4,17 @@ const { links } = require("../views/includes/links");
 
 exports.productsGet = asyncHandler(async (req, res) => {
   const products = await db.getProducts();
-  console.log(products);
   res.render("products", {
     title: "Products",
     links: links,
     products: products,
   });
+});
+
+exports.productByCategoryGet = asyncHandler(async (req, res) => {
+  const { category } = req.params;
+  const products = await db.getProductsByCategory(category);
+  res.render("products", { title: category, links: links, products: products });
 });
 
 exports.createProductGet = asyncHandler(async (req, res) => {
