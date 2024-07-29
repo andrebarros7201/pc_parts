@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title><%= title %></title>
+</head>
+<body>
+<%- include('includes/navbar', {links: links}) %>
+<h1><%= title %></h1>
+
+<form action="/products/create" method="POST">
+    <span>
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" required minlength="3">
+    </span>
+    <span>
+        <label for="type">Type: </label>
+        <select name="type" id="type">
+            <% categories.map(category =>{ %>
+                <option value=<%=category.id%>><%=category.type%></option>
+            <%})%>
+        </select>
+    </span>
+    <span>
+        <label for="manufacturer">Manufacturer: </label>
+        <select name="manufacturer" id="manufacturer">
+            <% manufacturers.map(manufacturer =>{ %>
+            <option value=<%=manufacturer.id%>><%=manufacturer.name%></option>
+            <%})%>
+        </select>
+    </span>
+    <button type="submit">Create Product</button>
+</form>
+
+
+</body>
+</html>

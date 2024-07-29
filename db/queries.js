@@ -6,3 +6,20 @@ exports.getProducts = async () => {
   );
   return rows;
 };
+
+exports.getCategories = async () => {
+  const { rows } = await pool.query("SELECT * FROM categories");
+  return rows;
+};
+
+exports.getManufacturers = async () => {
+  const { rows } = await pool.query("SELECT * FROM manufacturers");
+  return rows;
+};
+
+exports.postProduct = async (name, type, manufacturer) => {
+  await pool.query(
+    "INSERT INTO products (name, category_id, manufacturer_id) VALUES ($1, $2, $3)",
+    [name, type, manufacturer],
+  );
+};

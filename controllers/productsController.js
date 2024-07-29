@@ -11,3 +11,20 @@ exports.productsGet = asyncHandler(async (req, res) => {
     products: products,
   });
 });
+
+exports.createProductGet = asyncHandler(async (req, res) => {
+  const categories = await db.getCategories();
+  const manufacturers = await db.getManufacturers();
+  res.render("create", {
+    title: "Create Product",
+    links: links,
+    categories: categories,
+    manufacturers: manufacturers,
+  });
+});
+
+exports.createProductPost = asyncHandler(async (req, res) => {
+  const { name, type, manufacturer } = req.body;
+  await db.postProduct(name, type, manufacturer);
+  res.redirect("/products");
+});
