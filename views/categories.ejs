@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title><%= title %></title>
+</head>
+<body>
+<%- include('includes/navbar', {links: links}) %>
+<h1><%= title %></h1>
+
+<ul>
+    <% categories.map(item => {%>
+        <li><a href=products/<%=item.type%>><%=item.type%></a></li>
+    <%})%>
+</ul>
+</body>
+</html>
