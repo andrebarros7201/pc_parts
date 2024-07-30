@@ -1,6 +1,7 @@
 <html>
 <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <%- include('includes/navbar', {links: links}) %>
@@ -27,6 +28,11 @@
             <%})%>
         </select>
     </span>
+    <span>
+        <label for="price">Price: </label>
+        <input type="number" name="price" id="price" required min="1">
+    </span>
+
     <button type="submit">Create Product</button>
 </form>
 

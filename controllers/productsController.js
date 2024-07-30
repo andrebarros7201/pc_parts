@@ -34,7 +34,7 @@ exports.createProductGet = asyncHandler(async (req, res) => {
 });
 
 exports.createProductPost = asyncHandler(async (req, res) => {
-  const { name, type, manufacturer } = req.body;
-  await db.postProduct(name, type, manufacturer);
+  const { name, type, manufacturer, price } = req.body;
+  await db.postProduct(name, type, manufacturer, price);
   res.redirect("/products");
 });

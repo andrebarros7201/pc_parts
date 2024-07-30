@@ -25,9 +25,9 @@ exports.getProductsByCategory = async (category) => {
   return rows;
 };
 
-exports.postProduct = async (name, type, manufacturer) => {
+exports.postProduct = async (name, type, manufacturer, price) => {
   await pool.query(
-    "INSERT INTO products (name, category_id, manufacturer_id) VALUES ($1, $2, $3)",
-    [name, type, manufacturer],
+    "INSERT INTO products (name, category_id, manufacturer_id, price) VALUES ($1, $2, $3, $4)",
+    [name, type, manufacturer, price],
   );
 };
