@@ -22,6 +22,16 @@ exports.productsGet = asyncHandler(async (req, res) => {
   }
 });
 
+exports.productIdGet = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const product = await db.getProductById(id);
+  res.render("product", {
+    title: product[0].product,
+    links: links,
+    product: product[0],
+  });
+});
+
 exports.createProductGet = asyncHandler(async (req, res) => {
   const categories = await db.getCategories();
   const manufacturers = await db.getManufacturers();
@@ -36,5 +46,12 @@ exports.createProductGet = asyncHandler(async (req, res) => {
 exports.createProductPost = asyncHandler(async (req, res) => {
   const { name, type, manufacturer, price } = req.body;
   await db.postProduct(name, type, manufacturer, price);
+  res.redirect("/products");
+});
+
+exports.deleteProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  await db.deleteProduct(id);
   res.redirect("/products");
 });

@@ -9,12 +9,8 @@
 <button  class="new_prod"><a href="/products/create">Create a new product</a></button>
 <main>
     <% products.map(item => {%>
-        <button class="product"><%= item.product + " " + item.type + " " + item.manufacturer + " " + item.price+ "€" %></button>
+        <button class="product"><a href=/products/<%= item.id %>><%= item.product + " " + item.type + " " + item.manufacturer + " " + item.price+ "€" %></a></button>
     <%})%>
 </main>
-
-
-
-
 </body>
 </html>
