@@ -1,17 +1,20 @@
 <html>
 <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <%- include('includes/navbar', {links: links}) %>
-<h1><%= title %></h1>
-
-<ul>
+<h1 class="title"><%= title %></h1>
+<button  class="new_prod"><a href="/products/create">Create a new product</a></button>
+<main>
     <% products.map(item => {%>
-        <li><%= item.product + " " + item.type + " " + item.manufacturer + " " + item.price+ "€" %></li>
+        <button class="product"><%= item.product + " " + item.type + " " + item.manufacturer + " " + item.price+ "€" %></button>
     <%})%>
-</ul>
+</main>
 
-<a href="/products/create">Create a new product</a>
+
+
+
 </body>
 </html>
